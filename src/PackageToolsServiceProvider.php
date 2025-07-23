@@ -90,6 +90,7 @@ abstract class PackageToolsServiceProvider extends ServiceProvider
             ->bootPackageViews()
             ->bootPackageViewComposers()
             ->bootPackageViewSharedData()
+            ->registerModule()
             ->packageBooted();
     }
 
@@ -106,7 +107,7 @@ abstract class PackageToolsServiceProvider extends ServiceProvider
         $name = $this->package->name;
         $version = $this->getVersion();
         $namespace = $this->getPackageNamespace();
-        $moduleStub = file_get_contents(__DIR__.'/stubs/module.stub');
+        $moduleStub = File::get(__DIR__.'/../stubs/Module.stub');
         $code = str_replace([
             '{{MODULE_NAME}}',
             '{{VERSION}}',

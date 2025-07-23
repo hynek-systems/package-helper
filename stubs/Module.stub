@@ -1,0 +1,35 @@
+<?php
+
+namespace Modules\Core\{{MODULE_NAME}};
+
+use App\Modules\BaseModule;
+use Illuminate\Support\Str;
+use Illuminate\Support\ServiceProvider;
+
+class {{MODULE_NAME}} extends BaseModule
+{
+    public function name(): string
+    {
+        return Str::headline(class_basename($this));
+    }
+
+    public function description(): string
+    {
+        return file_get_contents(__DIR__.'/readme.md');
+    }
+
+    public function version(): string
+    {
+        return {{VERSION}};
+    }
+
+    public function bootstrap(): void
+    {
+        //
+    }
+
+    public function provider(): ServiceProvider
+    {
+        return {{PACKAGE_NAMESPACE}}\{{PACKAGE_NAME}}ServiceProvider;
+    }
+}
