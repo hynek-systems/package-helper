@@ -1,0 +1,17 @@
+{
+    "name": "hynek/package-helper",
+    "description": "Some utilities for creating and managing packages in Hynek",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "version": "0.0.1",
+    "require": {
+        "php": "^8.0",
+        "illuminate/contracts": "^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hynek\\PackageTools\\": "src"
+        }
+    }
+}

@@ -1,0 +1,7 @@
+/packages/hynek/package-helper/* export-ignore
+/composer.json export-ignore
+/readme.md export-ignore
+
+* export-ignore
+
+/packages/hynek/package-helper/** !export-ignore
