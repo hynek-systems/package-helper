@@ -14,7 +14,6 @@ use Hynek\PackageTools\Traits\PackageToolsServiceProvider\ProcessTranslations;
 use Hynek\PackageTools\Traits\PackageToolsServiceProvider\ProcessViewComposers;
 use Hynek\PackageTools\Traits\PackageToolsServiceProvider\ProcessViews;
 use Hynek\PackageTools\Traits\PackageToolsServiceProvider\ProcessViewSharedData;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use ReflectionClass;
 
@@ -90,7 +89,6 @@ abstract class PackageToolsServiceProvider extends ServiceProvider
             ->bootPackageViews()
             ->bootPackageViewComposers()
             ->bootPackageViewSharedData()
-            ->registerModule()
             ->packageBooted();
     }
 
@@ -100,35 +98,6 @@ abstract class PackageToolsServiceProvider extends ServiceProvider
 
     public function packageBooted()
     {
-    }
-
-    public function registerModule(): static
-    {
-        $name = $this->package->name;
-        $version = $this->getVersion();
-        $namespace = $this->getPackageNamespace();
-        $moduleStub = File::get(__DIR__.'/../stubs/Module.stub');
-        $code = str_replace([
-            '{{MODULE_NAME}}',
-            '{{VERSION}}',
-            '{{PACKAGE_NAMESPACE}}',
-            '{{PACKAGE_NAME}}'
-        ], [
-            $name,
-            $version,
-            $namespace,
-            $name
-        ], $moduleStub);
-
-        $moduleDir = module_path('core', $name);
-
-        if (!File::exists($moduleDir)) {
-            File::makeDirectory($moduleDir, 755);
-        }
-
-        File::put($moduleDir.DIRECTORY_SEPARATOR.'Module.php', $code);
-
-        return $this;
     }
 
     /**
