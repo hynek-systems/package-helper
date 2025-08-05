@@ -1,5 +1,5 @@
 {
-    "name": "hynek/package-helper",
+    "name": "hynek/package-tools",
     "description": "Some utilities for creating and managing packages in Hynek",
     "type": "library",
     "minimum-stability": "dev",
